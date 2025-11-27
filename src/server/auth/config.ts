@@ -19,10 +19,6 @@ export const auth = betterAuth({
 	secret: env.AUTH_SECRET,
 	trustedOrigins: ["http://localhost:3000"],
 	socialProviders: {
-		discord: {
-			clientId: env.AUTH_DISCORD_ID || "",
-			clientSecret: env.AUTH_DISCORD_SECRET || "",
-		},
 	},
 	emailAndPassword: {
 		enabled: true,
