@@ -18,8 +18,7 @@ export const auth = betterAuth({
 	}),
 	secret: env.AUTH_SECRET,
 	trustedOrigins: ["http://localhost:3000"],
-	socialProviders: {
-	},
+	socialProviders: {},
 	emailAndPassword: {
 		enabled: true,
 		//requireEmailVerification: env.NODE_ENV === "production",

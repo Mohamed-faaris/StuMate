@@ -1,17 +1,16 @@
-import { cn } from "~/lib/utils";
-import { useState } from "react";
-import {Button} from "./button"
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useTheme } from "next-themes";
+import { cn } from "~/lib/utils";
+import { Button } from "./button";
 
-
-export const AnimatedThemeToggle = ({className}:{className?:string}) => {
-  const [theme,setTheme] = useState("light");
+export const AnimatedThemeToggle = ({ className }: { className?: string }) => {
+  const { theme, setTheme } = useTheme();
   const isDark = theme === "dark";
 
   return (
     <Button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className={cn("px-2.5",className)}
+      className={cn("px-2.5", className)}
       variant="outline"
     >
       <SolarSwitch isDark={isDark} />
@@ -53,6 +52,7 @@ const SolarSwitch = ({ isDark }: { isDark: boolean }) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
+        <title>Toggle theme</title>
         <motion.path
           d="M12.4058 17.7625C15.1672 17.7625 17.4058 15.5239 17.4058 12.7625C17.4058 10.0011 15.1672 7.76251 12.4058 7.76251C9.64434 7.76251 7.40576 10.0011 7.40576 12.7625C7.40576 15.5239 9.64434 17.7625 12.4058 17.7625Z"
           stroke="currentColor"

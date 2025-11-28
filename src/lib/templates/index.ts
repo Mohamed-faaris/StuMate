@@ -1,7 +1,7 @@
 import allQuestionTypes from "./all-question-types.json";
 
 export const templates: Record<string, any> = {
-    allQuestionTypes,
+	allQuestionTypes,
 };
 
 export default templates;

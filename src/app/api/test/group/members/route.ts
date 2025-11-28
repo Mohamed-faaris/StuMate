@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
 				newUserIds.map((id) => ({
 					groupId,
 					userId: id,
-				}))
+				})),
 			);
 
 			// Get updated member count and update group size
@@ -60,9 +60,7 @@ export async function POST(request: NextRequest) {
 				.from(groupsMembers)
 				.where(eq(groupsMembers.groupId, groupId));
 
-			await tx.update(groups)
-				.set({ size: memberCount.length })
-				.where(eq(groups.id, groupId));
+			await tx.update(groups).set({ size: memberCount.length }).where(eq(groups.id, groupId));
 		});
 
 		return NextResponse.json({
@@ -71,10 +69,7 @@ export async function POST(request: NextRequest) {
 		});
 	} catch (error) {
 		if (error instanceof Error && error.message === "All users are already members of this group") {
-			return NextResponse.json(
-				{ error: error.message },
-				{ status: 409 },
-			);
+			return NextResponse.json({ error: error.message }, { status: 409 });
 		}
 		console.error("Error adding member:", error);
 		return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
@@ -108,9 +103,7 @@ export async function DELETE(request: NextRequest) {
 				.from(groupsMembers)
 				.where(eq(groupsMembers.groupId, groupId));
 
-			await tx.update(groups)
-				.set({ size: memberCount.length })
-				.where(eq(groups.id, groupId));
+			await tx.update(groups).set({ size: memberCount.length }).where(eq(groups.id, groupId));
 		});
 
 		return NextResponse.json({ success: true, message: "Member removed successfully" });
